@@ -46,7 +46,18 @@ app.patch('/students/:id', async(req, res)=>{
     try{
         const _id = req.params.id;
         const updateStudent = await Student.findByIdAndUpdate(_id, req.body);
-        res.send(updateStudent)
+        res.send(updateStudent);
+    }catch(e){
+        res.status(400).send(e);
+    }
+})
+
+//delete data of students by id
+app.delete('/students/:id', async(req, res)=>{
+    try{
+        const id = req.params.id
+        const deleteStudent = await Student.findByIdAndDelete(id);
+        res.send(deleteStudent)
     }catch(e){
         res.status(400).send(e);
     }
