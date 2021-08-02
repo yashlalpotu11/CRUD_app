@@ -41,6 +41,17 @@ app.get('/students/:id', async(req, res) => {
 })
 
 
+//update data of students by id
+app.patch('/students/:id', async(req, res)=>{
+    try{
+        const _id = req.params.id;
+        const updateStudent = await Student.findByIdAndUpdate(_id, req.body);
+        res.send(updateStudent)
+    }catch(e){
+        res.status(400).send(e);
+    }
+})
+
 // app.post('/students', (req,res) => {
 //     console.log(req.body);
 //     const user = new Student(req.body)
